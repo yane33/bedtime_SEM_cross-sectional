@@ -48,3 +48,11 @@ draft_v.1 sent: basic ideas about this article
 concept of subgroup difference analysis
 
 
+07.30 updated content
+# data analysis
+visualization in APA
+
+# write the article
+introduction 07/30 - 08/01
+
+
