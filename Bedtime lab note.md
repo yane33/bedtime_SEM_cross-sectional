@@ -57,4 +57,6 @@ visualization in APA
 # write the article
 introduction: collect the targeted articles
 
+Summary: I truly felt the beauty of mathematic models by demostrating the deep mechanism of those seemingly messy numbers. Through models, we can change that chaos into some valuable findings to boost the development of science. Perhaps I haven't grasped the whole knowledge behind the statistical process; I gradually understand why we need to learn statistics and mathematical models to reveal behavioral science's patterns. I believe when we know the importance of the specific knowledge field, we will learn it more seriously, leading to some real difference compared to those machining-type learners. Therefore, I love the learning type of learning by doing. We need, so we learn.
+
 
