@@ -12,6 +12,8 @@ result 08/02 - 08/03
 discussion 08/03 - 08/05
 
 # revision and submit
+revise
+collect the key concepts from the data analysis process and understand those concepts
 
 
 
