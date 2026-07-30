@@ -55,6 +55,6 @@ concept of subgroup difference analysis
 visualization in APA
 
 # write the article
-introduction 07/30 - 08/01
+introduction: collect the targeted articles
 
 
