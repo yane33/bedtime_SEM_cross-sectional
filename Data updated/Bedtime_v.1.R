@@ -2,7 +2,7 @@
              ####### Bedtime data analysis #######
              #####################################
 
-### Preface ### N = 543
+### Preface ### N = 541
 # raw: raw data from excel == df_waves: raw data conbined from wave1 (2024 collected) and wave2 (2026 collected)
 #   wave1_raw/final: first wave; wave2_raw/final: second wave
 # clean_test: data without missing value and insufficient data
@@ -19,7 +19,7 @@
 ####### 1.1 数据前置处理以确保能顺利进行分析 clean data #######
 # import the data
 getwd()
-setwd("/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime")
+setwd("/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data")
 install.packages("readxl")
 library(readxl)
 raw <- read_excel("1.0_raw.xlsx")
@@ -574,7 +574,7 @@ plot(model_lm, which = 4) # Cook's distance = 找出对模型影响过大的个�
 
 # directly output the complete correlation table from R
 library(apaTables)
-apa.reg.table(model_lm, filename = "Table_3")
+apa.reg.table(model_lm, filename = "Table_3") # 直接输出表格避免数值错误
 
 
 # 2.1.8 mediation analysis using lavaan() (N = 541) 需要掌握重要知识
@@ -620,6 +620,63 @@ fit_chain <- sem(chain_model, data = df_final_w, se = "bootstrap", bootstrap = 5
 summary(fit_chain, standardized = TRUE, fit.measures = TRUE)
 #CFI = 0.939, TLI = 0.93, RMSEA = 0.049, SRMR = 0.049 == indicating that the fitted model is overall good
 parameterEstimates(fit_chain, boot.ci.type = "bca.simple") %>% filter(op == ":=") # p = .003 < .05
+
+# output the SEM chain mediation result
+# figure 1 regression paths 结构路径
+library(dplyr)
+install.packages("flextable")
+library(flextable)
+
+path_table <- parameterEstimates(fit_chain, standardized = TRUE) %>%
+  filter(op == "~") %>%   # 只保留回归路径，不要测量模型和协方差
+  select(lhs, rhs, label, est, se, z, pvalue, std.all) %>%
+  mutate(
+    est = round(est, 3),
+    se = round(se, 3),
+    z = round(z, 3),
+    std.all = round(std.all, 3),
+    pvalue = ifelse(pvalue < .001, "< .001", round(pvalue, 3))
+  ) %>%
+  rename(
+    Outcome = lhs,
+    Predictor = rhs,
+    Label = label,
+    B = est,
+    SE = se,
+    Z = z,
+    p = pvalue,
+    β = std.all
+  )
+# 生成word表格
+ft <- flextable(path_table)
+save_as_docx(ft, path = "Table_SEM_Paths.docx")
+
+# figure 2 indirect effects 间接效应
+indirect_table <- parameterEstimates(fit_chain, boot.ci.type = "bca.simple") %>%
+  filter(op == ":=") %>%
+  select(label, est, se, z, pvalue, ci.lower, ci.upper) %>%
+  mutate(
+    est = round(est, 3),
+    se = round(se, 3),
+    z = round(z, 3),
+    ci.lower = round(ci.lower, 3),
+    ci.upper = round(ci.upper, 3),
+    pvalue = ifelse(pvalue < .001, "< .001", round(pvalue, 3)),
+    CI = paste0("[", ci.lower, ", ", ci.upper, "]")
+  ) %>%
+  select(label, est, se, z, pvalue, CI) %>%
+  rename(
+    Effect = label,
+    B = est,
+    SE = se,
+    Z = z,
+    p = pvalue,
+    `95% CI` = CI
+  )
+ft2 <- flextable(indirect_table)
+save_as_docx(ft2, path = "Table_Indirect_Effects.docx")
+
+
 
 # step 2: moderated mediation: professional package to run the latent variables' interaction
 install.packages("modsem")
@@ -707,5 +764,99 @@ apa_plot
 
 ggsave("Figure_ModerateMediation.png", plot = apa_plot,
        width = 6, height = 4.5, dpi = 300, units = "in")
+
+# output the result of LMS modsem moderated mediation model （结构路径+间接效应）
+# 先看看modsem对象内部结构，找到参数表在哪个位置
+str(fit_modsem, max.level = 1)
+pt <- fit_modsem$parTable #目标参数表
+names(pt)     # 看看有哪些列
+head(pt, 20)  # 先看前20行，了解结构长什么样
+
+library(dplyr) #结构路径结果
+path_table <- pt %>%
+  filter(op == "~") %>%          # 只要回归路径，不要测量模型/协方差
+  select(lhs, rhs, est, std.error) %>%  # 具体列名根据上面names(pt)的实际结果调整
+  mutate(
+    z = est / std.error,
+    p = 2 * (1 - pnorm(abs(z))),
+    est = round(est, 3),
+    se = round(std.error, 3),
+    z = round(z, 3),
+    p = ifelse(p < .001, "< .001", round(p, 3))
+  )
+path_table
+
+library(dplyr)
+path_table <- path_table %>%
+  mutate(
+    Path_Label = case_when(
+      lhs == "SM" & rhs == "S_1" ~ "a1: Stress → SM",
+      lhs == "DP" & rhs == "S_1" ~ "a2: Stress → DP",
+      lhs == "DP" & rhs == "SM"  ~ "d21: SM → DP",
+      lhs == "BP" & rhs == "S_1" ~ "c': Stress → BP (direct)",
+      lhs == "BP" & rhs == "SM"  ~ "c_SM: SM → BP",
+      lhs == "BP" & rhs == "DP"  ~ "b1: DP → BP",
+      lhs == "BP" & rhs == "ME"  ~ "b2: Chronotype → BP",
+      lhs == "BP" & rhs == "DP:ME" ~ "b3: DP × Chronotype → BP",
+      lhs == "BP" & rhs == "PA_total" ~ "Physical Activity → BP",
+      rhs == "age" ~ paste0("Age → ", lhs),
+      rhs == "gender" ~ paste0("Gender → ", lhs),
+      rhs == "wave_num" ~ paste0("Wave → ", lhs),
+      TRUE ~ paste0(rhs, " → ", lhs)
+    )
+  )
+final_table <- path_table %>%
+  select(Path_Label, est, se, z, p) %>%
+  rename(
+    Path = Path_Label,
+    B = est,
+    SE = se,
+    Z = z
+  )
+final_table
+
+library(flextable)
+ft <- flextable(final_table) %>%
+  set_caption("Structural Paths in the Latent Moderated Structural Equation Model") %>%
+  autofit()
+save_as_docx(ft, path = "/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data/Table_LMS_Paths.docx")
+
+# indirect effect
+indirect_table <- pt %>%
+  filter(lhs %in% c("indirect_via_DP_only", "indirect_via_chain", 
+                    "total_indirect", "index_mod_med"))
+indirect_table
+
+library(dplyr)
+indirect_final <- indirect_table %>%
+  mutate(
+    Effect_Label = case_when(
+      lhs == "indirect_via_DP_only" ~ "Simple mediation: Stress → DP → BP",
+      lhs == "indirect_via_chain"   ~ "Chain mediation: Stress → SM → DP → BP",
+      lhs == "index_mod_med"        ~ "Index of moderated mediation"
+    ),
+    CI = paste0("[", ci.lower, ", ", ci.upper, "]"),
+    p.value = ifelse(p.value < .001, "< .001", sprintf("%.3f", p.value))
+  ) %>%
+  select(Effect_Label, est, std.error, z.value, CI, p.value) %>%
+  rename(
+    Effect = Effect_Label,
+    B = est,
+    SE = std.error,
+    Z = z.value,
+    `95% CI` = CI,
+    p = p.value
+  )
+indirect_final
+
+library(flextable)
+
+ft_indirect <- flextable(indirect_final) %>%
+  set_caption("Indirect Effects and Index of Moderated Mediation") %>%
+  autofit()
+
+save_as_docx(ft_indirect, path = "/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data/Table_LMS_IndirectEffects.docx")
+
+
 
 
