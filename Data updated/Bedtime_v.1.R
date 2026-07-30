@@ -316,7 +316,7 @@ summary(fit_DP_revised, fit.measures = TRUE, standardized = TRUE)
 
 
 
-####### 2.1 正式进入数据分析 data analysis ####### (N = 541)
+####### 2.1 正式进入数据分析 data analysis #######
 # 2.1.1 Harman's single-factor test to test common method bias (CMB) first factor < 40% or 50%
 install.packages("psych")
 library(psych)
@@ -512,7 +512,7 @@ install.packages("apaTables")
 library(apaTables)
 apa.cor.table(df_cor, filename = "Table_Correlations.doc", show.conf.interval = FALSE)
 
-# 2.1.7 multiple linear regression analysis (N = 541)
+####### 2.1.7 multiple linear regression analysis (N = 541) #######
 # age: continuous = numeric, gender: categorical = factor(delete two pp), student_id: cate = factor, wave: two levels = numeric
 
 df_final_w$gender <- factor(
@@ -576,9 +576,7 @@ plot(model_lm, which = 4) # Cook's distance = 找出对模型影响过大的个�
 library(apaTables)
 apa.reg.table(model_lm, filename = "Table_3") # 直接输出表格避免数值错误
 
-
-# 2.1.8 mediation analysis using lavaan() (N = 541) 需要掌握重要知识
-
+####### 2.1.8 mediation analysis using lavaan() (N = 541) 需要掌握重要知识 #######
 # step 1: main model without moderator: chronotype (measure model, chain mediation and covariate variables)
 str(df_final_w)
 install.packages("lavaan")
@@ -677,8 +675,7 @@ ft2 <- flextable(indirect_table)
 save_as_docx(ft2, path = "Table_Indirect_Effects.docx")
 
 
-
-# step 2: moderated mediation: professional package to run the latent variables' interaction
+####### 2.1.9 moderated mediation: professional package to run the latent variables' interaction #######
 install.packages("modsem")
 library(modsem)
 
@@ -765,7 +762,7 @@ apa_plot
 ggsave("Figure_ModerateMediation.png", plot = apa_plot,
        width = 6, height = 4.5, dpi = 300, units = "in")
 
-# output the result of LMS modsem moderated mediation model （结构路径+间接效应）
+####### 2.2 output the result of LMS modsem moderated mediation model （结构路径+间接效应) #######
 # 先看看modsem对象内部结构，找到参数表在哪个位置
 str(fit_modsem, max.level = 1)
 pt <- fit_modsem$parTable #目标参数表
@@ -785,6 +782,10 @@ path_table <- pt %>%
     p = ifelse(p < .001, "< .001", round(p, 3))
   )
 path_table
+
+names(fit_modsem)
+
+unique(pt$rhs)
 
 library(dplyr)
 path_table <- path_table %>%
@@ -856,7 +857,4 @@ ft_indirect <- flextable(indirect_final) %>%
   autofit()
 
 save_as_docx(ft_indirect, path = "/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data/Table_LMS_IndirectEffects.docx")
-
-
-
 
