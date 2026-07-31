@@ -69,5 +69,12 @@ final check with the appendix figures and tables (especially table 4 - 7 moderat
 
 2. write the article
 introduction: begin to write the basic draft
+  - analyze the structure of target journal
+  - write the basic framework
+  - check the requirements of the target journals - JAD
+
+Summary: Today, I try to understand the difficult definition of structural path labels, like b1, b2, b3, c1, etc. At the beginning, I couldn't get the main point of this concept since we have already gotten those variable names. It is a little waste to rename the coefficients. But as I read those instructions line by line, I suddenly realized that the labels of those structural paths is used to save the coefficients of two variables' paths so that we can get the indirect effect or indirect structural path coefficients from one variable to another variable that is not connected with each other, named the (chain) mediation model. So all in all, the letter works for a variable name where different people have different values, while the label works for a path coefficient that only exists between two connected variables.
+
+
 
 
