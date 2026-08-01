@@ -1,11 +1,11 @@
 
 ###### Bedtime article publication plan ##### 2026v
 
-# data analysis
+# data analysis 弄懂统计分析背后的知识原理
 run the data to get the results 07/29
 visualization in APA 07/30
 
-# begin to write the article 07/30 - 08/05
+# begin to write the article 07/30 - 08/05 建立学术文章知识库
 introduction 07/30 - 08/01 the specific path letter in the two models
 method 08/01 - 08/02
 result 08/02 - 08/03
