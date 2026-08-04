@@ -84,7 +84,9 @@ introduction
 - write the draft
 
 # 08.04 research note (rest for some days...., let's continue....)
-1. write the article
+1. write the article half
+
+Summary: I discovered a really new concept, involution to describe the background of Chinese stressful academic atmosphere, while introducing the key variables, academic stress and bedtime procrastination or sleep problems. Good!
 
 
 
