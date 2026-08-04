@@ -6,10 +6,10 @@ run the data to get the results 07/29
 visualization in APA 07/30
 
 # begin to write the article 07/30 - 08/05 建立学术文章知识库
-introduction 07/30 - 08/01 the specific path letter in the two models
-method 08/01 - 08/02
-result 08/02 - 08/03
-discussion 08/03 - 08/05
+introduction 07/30 - 08/05
+method 08/06 - 08/07
+result 08/07 - 08/10
+discussion 08/11 - 08/13
 
 # revision and submit
 revise
@@ -82,6 +82,9 @@ Summary: Today, I try to understand the difficult definition of structural path 
 introduction
 - analyze two similar articles' structure
 - write the draft
+
+# 08.04 research note (rest for some days...., let's continue....)
+1. write the article
 
 
 
