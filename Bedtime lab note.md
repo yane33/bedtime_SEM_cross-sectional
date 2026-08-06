@@ -6,7 +6,7 @@ run the data to get the results 07/29
 visualization in APA 07/30
 
 # begin to write the article 07/30 - 08/05 建立学术文章知识库
-introduction 07/30 - 08/05
+introduction 07/30 - 08/05 (reference, tense check)
 method 08/06 - 08/07
 result 08/07 - 08/10
 discussion 08/11 - 08/13
@@ -91,6 +91,10 @@ Summary: I discovered a really new concept, involution to describe the backgroun
 # 08.05 research note
 1. write the article
 introduction finalized! (reference, tense check)
+
+# 08.06 research note
+1. write the article
+method 1/2
 
 
 
