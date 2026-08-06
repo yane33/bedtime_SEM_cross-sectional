@@ -6,7 +6,7 @@ run the data to get the results 07/29
 visualization in APA 07/30
 
 # begin to write the article 07/30 - 08/05 建立学术文章知识库
-introduction 07/30 - 08/05 (reference, tense check)
+introduction 07/30 - 08/05 (reference, tense check, revise the words and phases)
 method 08/06 - 08/07
 result 08/07 - 08/10
 discussion 08/11 - 08/13
