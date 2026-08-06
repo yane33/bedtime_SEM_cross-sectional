@@ -7,7 +7,7 @@ visualization in APA 07/30
 
 # begin to write the article 07/30 - 08/05 建立学术文章知识库
 introduction 07/30 - 08/05 (reference, tense check, revise the words and phases)
-method 08/06 - 08/07
+method 08/06 (double check)
 result 08/07 - 08/10
 discussion 08/11 - 08/13
 
@@ -94,7 +94,9 @@ introduction finalized! (reference, tense check)
 
 # 08.06 research note
 1. write the article
-method 1/2
+method finished
+
+Summary: I totally understood the beauty of rechecking the previous materials. Since the method section is really similar with prior one, I need to write the new content based on my previous words and the standard of published article. During this process, I have a feeling that I realize the significance of reviewing, which is to iterate the previous version of ourselves. Through reviewing the content we created before, we can easily discover the good points and limitation. By correcting the limitation, we definitely complete a self-evolution or iteration to become a better man.
 
 
 
