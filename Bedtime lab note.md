@@ -9,7 +9,8 @@ visualization in APA 07/30
 introduction 07/30 - 08/05 (reference, tense check, revise the words and phases)
 method 08/06 (double check)
 result 08/07 - 08/08
-discussion 08/11 - 08/13
+discussion 08/09 - 08/13
+submit to the journal 08/13
 
 # revision and submit
 revise
