@@ -73,6 +73,7 @@ df_waves[,c(1,2,3,4,5,6,7,8,9,10)]#double-check
 df_waves[,c(11,12,13,14,15,16,17)]
 head(df_waves)
 
+
 # working on row/pp: detect and exclude the invalid participants' data: 
 # 1) PA_test: 52
 install.packages("dplyr")
@@ -197,7 +198,9 @@ str(df_final)
 nrow(df_final) # 541
 ncol(df_final) # 41
 
-
+# distribution
+install.packages("ggplot2")
+library(ggplot2)
 
 
 
@@ -374,6 +377,8 @@ df_final_w <- df_final_w %>%
     DP_total = rowSums(select(., DP_1:DP_9), na.rm = TRUE)
   )
 str(df_final_w)
+
+table(PA_total)
 
 pp_code <- df_final_w$pp_code
 age <- df_final_w$age
@@ -609,6 +614,7 @@ chain_model <-'
  BP ~ cprime*S_1 + c_SM*SM + b1*DP + PA_total + age + gender + wave_num
  
  # ---------- 间接效应 ----------
+ indirect_via_SM_only := a1*c_SM
  indirect_via_DP_only := a2*b1
  indirect_via_chain := a1*d21*b1
  total_indirect := indirect_via_DP_only + indirect_via_chain
@@ -704,8 +710,11 @@ model_syntax <- '
   BP ~ cprime*S_1 + c_SM*SM + b1*DP + b2*ME + b3*DP:ME + PA_total + age + gender + wave_num
 
   indirect_via_DP_only := a2*b1
+  indirect_via_SM_only := a1*c_SM
   indirect_via_chain := a1*d21*b1
-  index_mod_med := a1*d21*b3
+  
+  index_mod_med_chain := a1*d21*b3
+  index_mod_med_simple := a2*b3 # new line
 '
 fit_modsem <- modsem(model_syntax, data = df_final_w, method = "lms") # or other method = "qml
 summary(fit_modsem)
@@ -724,6 +733,29 @@ plot_interaction(
   vals_z = c(-1, 1),
   model = fit_modsem
 )
+
+# 提取系数（如果是非标准化系数，用 coef()；若要标准化，用 standardized_estimates() 并提取 est）
+coefs <- standardized_estimates(fit_modsem)
+b_DP <- coefs[coefs$lhs == "BP" & coefs$rhs == "DP", "est"]
+b_interact <- coefs[coefs$lhs == "BP" & coefs$rhs == "DP:ME", "est"]
+# 计算简单斜率
+slope_ME_low <- b_DP + b_interact * (-1)  # ME = -1 SD
+slope_ME_high <- b_DP + b_interact * 1   # ME = +1 SD
+print(paste("ME早睡型 (Z=-1):", slope_ME_low)) # 0.43
+print(paste("ME晚睡型 (Z=+1):", slope_ME_high)) # 0.13
+
+# 使用 simple_slopes() 计算简单斜率
+slopes <- simple_slopes(
+  x = "DP",          # 预测变量
+  z = "ME",          # 调节变量
+  y = "BP",          # 结果变量
+  xz = "DP:ME",      # 交互项
+  vals_z = c(-1, 1), # 指定要检验的调节变量水平（与绘图一致）
+  model = fit_modsem,
+  standardized = TRUE,
+)
+# 查看结果
+print(slopes)
 
 # apa type plot
 library(ggplot2)
@@ -824,7 +856,7 @@ save_as_docx(ft, path = "/Users/heyanyan/Desktop/Research/✅Online Yu - Researc
 
 # indirect effect
 indirect_table <- pt %>%
-  filter(lhs %in% c("indirect_via_DP_only", "indirect_via_chain", 
+  filter(lhs %in% c("indirect_via_SM_only","indirect_via_DP_only", "indirect_via_chain", 
                     "total_indirect", "index_mod_med"))
 indirect_table
 
@@ -832,6 +864,7 @@ library(dplyr)
 indirect_final <- indirect_table %>%
   mutate(
     Effect_Label = case_when(
+      lhs == "indirect_via_SM_only" ~ "Simple mediation: Stress → SM → BP",
       lhs == "indirect_via_DP_only" ~ "Simple mediation: Stress → DP → BP",
       lhs == "indirect_via_chain"   ~ "Chain mediation: Stress → SM → DP → BP",
       lhs == "index_mod_med"        ~ "Index of moderated mediation"
@@ -857,4 +890,9 @@ ft_indirect <- flextable(indirect_final) %>%
   autofit()
 
 save_as_docx(ft_indirect, path = "/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data/Table_LMS_IndirectEffects.docx")
+
+?lavaan()
+?modsem()
+citation()
+citation("modsem")
 
