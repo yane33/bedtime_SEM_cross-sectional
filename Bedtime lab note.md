@@ -13,7 +13,7 @@ discussion 08/09 - 08/13
 submit to the journal 08/13
 
 # revision and submit
-revise
+revise process with Dr. Yu 08/13 - 
 collect the key concepts from the data analysis process and understand those concepts (相关、回归到底是什么概念)
 
 
@@ -105,5 +105,33 @@ Summary: I totally understood the beauty of rechecking the previous materials. S
 result half of the whole section
 
 Summary: Actually I felt very embarrassed to write the result section, especially the translating the results I ran. However, as I analyzed two similar articles, I gradually realized the core secret of the structure behind those seemingly unreasonable numbers and words. I can create my own logical blueprint to write the everything I ran before. Congrats! I believe I can write the following things tomorrow.
+
+
+# 08.22 Revising advice from Dr. Yu
+Hi Yanyan,
+
+This improves a lot! Good job. This is a preferred story: Academic stress is associated with greater bedtime procrastination, partly through sequential associations involving social media addiction and depressive symptoms. The strength of the depressive-symptom–bedtime-procrastination association varies by chronotype, such that this association is weaker among individuals with greater eveningness. It should not be "Academic stress causes social media addiction, which causes depression, which causes bedtime procrastination, and eveningness protects against this process."
+
+A few more suggestions:
+
+Must change
+1. Stop using causal language.
+2. Stop saying “full mediation.”
+3. Fix/clarify chronotype coding.
+4. Add simple-slopes interaction plot.
+5. Report CFA and measurement invariance results fully.
+6. Clarify why covariates were selected.
+7. Treat age correctly.
+8. Add at least one plausible alternative model/sensitivity analysis.
+9. Remove the claim that preliminary regression “established” the mediation.
+10. Acknowledge the single-item academic stress measure.
+
+Nice to improve
+12. Distinguish total effect, direct effect, and indirect effects clearly.
+13. Report effect sizes and 95% CIs consistently.
+14. Clearly distinguish the two survey waves from a longitudinal study.
+15. Reduce the number of redundant analyses.
+
+Besides, I need to check the sentence tense and detailed construct.
 
 
