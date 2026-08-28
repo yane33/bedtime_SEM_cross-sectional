@@ -107,7 +107,7 @@ result half of the whole section
 Summary: Actually I felt very embarrassed to write the result section, especially the translating the results I ran. However, as I analyzed two similar articles, I gradually realized the core secret of the structure behind those seemingly unreasonable numbers and words. I can create my own logical blueprint to write the everything I ran before. Congrats! I believe I can write the following things tomorrow.
 
 
-# 08.22 Revising advice from Dr. Yu
+# 08.22 - 08.28 Revising advice from Dr. Yu
 Hi Yanyan,
 
 This improves a lot! Good job. This is a preferred story: Academic stress is associated with greater bedtime procrastination, partly through sequential associations involving social media addiction and depressive symptoms. The strength of the depressive-symptom–bedtime-procrastination association varies by chronotype, such that this association is weaker among individuals with greater eveningness. It should not be "Academic stress causes social media addiction, which causes depression, which causes bedtime procrastination, and eveningness protects against this process."
@@ -133,5 +133,7 @@ Nice to improve
 15. Reduce the number of redundant analyses.
 
 Besides, I need to check the sentence tense and detailed construct.
+
+Summary: I escaped from the review of this article for a while. But I really understand that I need to face the problem that I have encountered. Review actually is a difficult thing for me, which let me to get several lower scores in exams. I need to grasp the power of patience, review.
 
 
