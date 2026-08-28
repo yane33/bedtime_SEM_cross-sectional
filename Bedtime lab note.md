@@ -115,21 +115,21 @@ This improves a lot! Good job. This is a preferred story: Academic stress is ass
 A few more suggestions:
 
 Must change
-1. Stop using causal language. 
-2. Stop saying “full mediation.”
+1. Stop using causal language. T
+2. Stop saying “full mediation.” T
 3. Fix/clarify chronotype coding. T
-4. Add simple-slopes interaction plot.
-5. Report CFA and measurement invariance results fully.
-6. Clarify why covariates were selected.
-7. Treat age correctly.
+4. Add simple-slopes interaction plot. ?
+5. Report CFA and measurement invariance results fully. 
+6. Clarify why covariates were selected. => Physical activity
+7. Treat age correctly. ?
 8. Add at least one plausible alternative model/sensitivity analysis.
-9. Remove the claim that preliminary regression “established” the mediation.
-10. Acknowledge the single-item academic stress measure.
+9. Remove the claim that preliminary regression “established” the mediation. T
+10. Acknowledge the single-item academic stress measure. T
 
 Nice to improve
 12. Distinguish total effect, direct effect, and indirect effects clearly.
 13. Report effect sizes and 95% CIs consistently.
-14. Clearly distinguish the two survey waves from a longitudinal study.
+14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?).
 15. Reduce the number of redundant analyses.
 
 Besides, I need to check the sentence tense and detailed construct.
