@@ -115,9 +115,9 @@ This improves a lot! Good job. This is a preferred story: Academic stress is ass
 A few more suggestions:
 
 Must change
-1. Stop using causal language.
+1. Stop using causal language. 
 2. Stop saying “full mediation.”
-3. Fix/clarify chronotype coding.
+3. Fix/clarify chronotype coding. T
 4. Add simple-slopes interaction plot.
 5. Report CFA and measurement invariance results fully.
 6. Clarify why covariates were selected.
