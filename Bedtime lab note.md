@@ -120,7 +120,7 @@ Must change
 3. Fix/clarify chronotype coding. T
 4. Add simple-slopes interaction plot. ?
 5. Report CFA and measurement invariance results fully. 
-6. Clarify why covariates were selected. => Physical activity
+6. Clarify why covariates were selected. => Physical activity T
 7. Treat age correctly. ?
 8. Add at least one plausible alternative model/sensitivity analysis.
 9. Remove the claim that preliminary regression “established” the mediation. T
