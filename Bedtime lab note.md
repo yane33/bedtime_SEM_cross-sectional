@@ -5,18 +5,16 @@
 run the data to get the results 07/29
 visualization in APA 07/30
 
-# begin to write the article 07/30 - 08/05 建立学术文章知识库
+# begin to write the article 07/30 - 08/13 建立学术文章知识库
 introduction 07/30 - 08/05 (reference, tense check, revise the words and phases)
 method 08/06 (double check)
 result 08/07 - 08/08
 discussion 08/09 - 08/13
 submit to the journal 08/13
 
-# revision and submit
+# revision and submit 08.13 - 
 revise process with Dr. Yu 08/13 - 
 collect the key concepts from the data analysis process and understand those concepts (相关、回归到底是什么概念)
-
-
 
 # 07.29 Latest progress regarding the article publication
 1. data analysis
@@ -119,10 +117,10 @@ Must change
 2. Stop saying “full mediation.” T
 3. Fix/clarify chronotype coding. T
 4. Add simple-slopes interaction plot. ?
-5. Report CFA and measurement invariance results fully. 
+5. Report CFA and measurement invariance (different waves) results fully. !! really important to develop => T
 6. Clarify why covariates were selected. => Physical activity T
 7. Treat age correctly. ?
-8. Add at least one plausible alternative model/sensitivity analysis.
+8. Add at least one plausible alternative model/sensitivity analysis. => 
 9. Remove the claim that preliminary regression “established” the mediation. T
 10. Acknowledge the single-item academic stress measure. T
 
@@ -132,8 +130,15 @@ Nice to improve
 14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?).
 15. Reduce the number of redundant analyses.
 
-Besides, I need to check the sentence tense and detailed construct.
+Besides, I need to check the sentence tense and detailed construct. (second round)
 
 Summary: I escaped from the review of this article for a while. But I really understand that I need to face the problem that I have encountered. Review actually is a difficult thing for me, which let me to get several lower scores in exams. I need to grasp the power of patience, review.
+
+
+
+
+
+
+
 
 
