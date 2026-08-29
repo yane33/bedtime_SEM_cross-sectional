@@ -125,10 +125,10 @@ Must change
 10. Acknowledge the single-item academic stress measure. T
 
 Nice to improve
-12. Distinguish total effect, direct effect, and indirect effects clearly.
-13. Report effect sizes and 95% CIs consistently.
-14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?). =>
-15. Reduce the number of redundant analyses.
+12. Distinguish total effect, direct effect, and indirect effects clearly. => T
+13. Report effect sizes and 95% CIs consistently. B, β
+14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?). => T
+15. Reduce the number of redundant analyses. => move the table 3 to the supplimantary materials
 
 Besides, I need to check the sentence tense and detailed construct. (second round)
 
