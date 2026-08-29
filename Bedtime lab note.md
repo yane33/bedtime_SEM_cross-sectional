@@ -120,14 +120,14 @@ Must change
 5. Report CFA and measurement invariance (different waves) results fully. !! really important to develop => T
 6. Clarify why covariates were selected. => Physical activity T
 7. Treat age correctly. ?
-8. Add at least one plausible alternative model/sensitivity analysis. => 
+8. Add at least one plausible alternative model/sensitivity analysis. => T
 9. Remove the claim that preliminary regression “established” the mediation. T
 10. Acknowledge the single-item academic stress measure. T
 
 Nice to improve
 12. Distinguish total effect, direct effect, and indirect effects clearly.
 13. Report effect sizes and 95% CIs consistently.
-14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?).
+14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?). =>
 15. Reduce the number of redundant analyses.
 
 Besides, I need to check the sentence tense and detailed construct. (second round)
