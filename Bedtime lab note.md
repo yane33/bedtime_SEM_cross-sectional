@@ -130,7 +130,7 @@ Nice to improve
 [The original model misses some important content, resulting in the wrong total effect, and indirect effects => I need to re-write the whole result section to get the true values. OK, be patient!]
 13. Report effect sizes and 95% CIs consistently. B, β T model 3 can't provide the beta T
 14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?). => T
-15. Reduce the number of redundant analyses. => move the table 3 to the supplementary materials and words 
+15. Reduce the number of redundant analyses. => move the table 3 to the supplementary materials and words T
 
 16. Besides, I need to check the sentence tense and detailed construct. (second round)
 
