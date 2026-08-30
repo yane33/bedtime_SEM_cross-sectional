@@ -105,7 +105,7 @@ result half of the whole section
 Summary: Actually I felt very embarrassed to write the result section, especially the translating the results I ran. However, as I analyzed two similar articles, I gradually realized the core secret of the structure behind those seemingly unreasonable numbers and words. I can create my own logical blueprint to write the everything I ran before. Congrats! I believe I can write the following things tomorrow.
 
 
-# 08.22 - 08.28 Revising advice from Dr. Yu
+# 08.22 - 08. Revising advice from Dr. Yu
 Hi Yanyan,
 
 This improves a lot! Good job. This is a preferred story: Academic stress is associated with greater bedtime procrastination, partly through sequential associations involving social media addiction and depressive symptoms. The strength of the depressive-symptom–bedtime-procrastination association varies by chronotype, such that this association is weaker among individuals with greater eveningness. It should not be "Academic stress causes social media addiction, which causes depression, which causes bedtime procrastination, and eveningness protects against this process."
@@ -118,21 +118,30 @@ Must change
 3. Fix/clarify chronotype coding. T
 4. Add simple-slopes interaction plot. ?
 5. Report CFA and measurement invariance (different waves) results fully. !! really important to develop => T
-6. Clarify why covariates were selected. => Physical activity T
-7. Treat age correctly. ?
-8. Add at least one plausible alternative model/sensitivity analysis. => T
-9. Remove the claim that preliminary regression “established” the mediation. T
-10. Acknowledge the single-item academic stress measure. T
+[I write the analysis process in the method section, but i didn't explain it in the result section]
+7. Clarify why covariates were selected. => Physical activity T
+8. Treat age correctly. ?
+9. Add at least one plausible alternative model/sensitivity analysis. => T
+10. Remove the claim that preliminary regression “established” the mediation. T
+11. Acknowledge the single-item academic stress measure. T
 
 Nice to improve
-12. Distinguish total effect, direct effect, and indirect effects clearly. => T
+12. Distinguish total effect, direct effect, and indirect effects clearly. => 
+[The original model misses some important content, resulting in the wrong total effect, and indirect effects => I need to re-write the whole result section to get the true values. OK, be patient!]
 13. Report effect sizes and 95% CIs consistently. B, β
 14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?). => T
-15. Reduce the number of redundant analyses. => move the table 3 to the supplimantary materials
+15. Reduce the number of redundant analyses. => move the table 3 to the supplementary materials
 
-Besides, I need to check the sentence tense and detailed construct. (second round)
+16. Besides, I need to check the sentence tense and detailed construct. (second round)
 
 Summary: I escaped from the review of this article for a while. But I really understand that I need to face the problem that I have encountered. Review actually is a difficult thing for me, which let me to get several lower scores in exams. I need to grasp the power of patience, review.
+
+I came back to Netherlands. When I heard someone saying liberal arts are useless and very poor, I felt sad. Not only I am a liberal student, but also I have a totally different opinion. Mathematics, engineering, medicine indeed matter, but from my opinion, the life without words, liberal arts or spiritual things is just like a machine or AI, which is a life I don't want to live in the future. Therefore, whatever others say liberal arts are useless or poor, I will insist learning those beautiful treasure our ancestors left to us.
+Maybe it's the situation in the Netherlands, but I think if someone mastering English or other languages very well, he or she comes to China, and definitely would live a wonderful life. Although the whole tendency is that those technologies associated with engineering or mathematics worth more value and money. But it doesn't mean that other disciplines are useless. I think the key thing during the learning process is to grasp multilevel knowledges and technologies, such as liberal arts, mathematics, neuroscience, etc. The multi-skilled talents are the people the future wants.
+I always think that mathematics or statistics knowledges need to be translated into a more common format to benefit public, and the communication skill is the language or liberal arts. Keep learning, bro!
+From another perspective, I seem to lose everything I have in China. This will let me go out of the comfort zone and grasp those skills that I haven't mastered, especially the science and engineering. And that is the key thing I came to Netherlands. You don't need to think others' evaluation, you just keep learning and improving yourself, especially the quantitative field. Be patient! There is a old saying in China:"他山之石，可以攻玉”, I believe as a culture bridge communicator, I can grasp the benefits from both sides: the convenient and advanced living and the rigorous teaching and research attitude. Learning forever!
+
+
 
 
 
