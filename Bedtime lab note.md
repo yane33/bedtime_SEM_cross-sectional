@@ -116,11 +116,11 @@ Must change
 1. Stop using causal language. T
 2. Stop saying “full mediation.” T
 3. Fix/clarify chronotype coding. T
-4. Add simple-slopes interaction plot. ?
+4. Add simple-slopes interaction plot. ? => T
 5. Report CFA and measurement invariance (different waves) results fully. !! really important to develop => T
 [I write the analysis process in the method section, but i didn't explain it in the result section]
 7. Clarify why covariates were selected. => Physical activity T
-8. Treat age correctly. ?
+8. Treat age correctly. ? re-run the models
 9. Add at least one plausible alternative model/sensitivity analysis. => T
 10. Remove the claim that preliminary regression “established” the mediation. T
 11. Acknowledge the single-item academic stress measure. T
@@ -132,7 +132,7 @@ Nice to improve
 14. Clearly distinguish the two survey waves from a longitudinal study (Maybe the cross-sectional study?). => T
 15. Reduce the number of redundant analyses. => move the table 3 to the supplementary materials and words T
 
-16. Besides, I need to check the sentence tense and detailed construct. (second round)
+16. Besides, I need to check the sentence tense and detailed construct. (second round) 1000 words
 
 Summary: I escaped from the review of this article for a while. But I really understand that I need to face the problem that I have encountered. Review actually is a difficult thing for me, which let me to get several lower scores in exams. I need to grasp the power of patience, review.
 
@@ -140,6 +140,9 @@ I came back to Netherlands. When I heard someone saying liberal arts are useless
 Maybe it's the situation in the Netherlands, but I think if someone mastering English or other languages very well, he or she comes to China, and definitely would live a wonderful life. Although the whole tendency is that those technologies associated with engineering or mathematics worth more value and money. But it doesn't mean that other disciplines are useless. I think the key thing during the learning process is to grasp multilevel knowledges and technologies, such as liberal arts, mathematics, neuroscience, etc. The multi-skilled talents are the people the future wants.
 I always think that mathematics or statistics knowledges need to be translated into a more common format to benefit public, and the communication skill is the language or liberal arts. Keep learning, bro!
 From another perspective, I seem to lose everything I have in China. This will let me go out of the comfort zone and grasp those skills that I haven't mastered, especially the science and engineering. And that is the key thing I came to Netherlands. You don't need to think others' evaluation, you just keep learning and improving yourself, especially the quantitative field. Be patient! There is a old saying in China:"他山之石，可以攻玉”, I believe as a culture bridge communicator, I can grasp the benefits from both sides: the convenient and advanced living and the rigorous teaching and research attitude. Learning forever!
+
+08.31 research note
+During the data analysis process, I really saw my weakness, or the things that I can improve in the next step. While analyzing, I realized that I can deal with those scales better, which will help me analyze those data better. Firstly, I should collect the real age number rather than the range, so I can regard these numbers as the continuous variable rather than the factor. Secondly, for the core variables, I need to select the professional scales rather than the one-item scale. Anyway, I really learn a lot during this process and I am excited to do the subsequent research, such as longitudinal or daily diary research to further explore the relationship between these variables :) Crazy!
 
 
 
