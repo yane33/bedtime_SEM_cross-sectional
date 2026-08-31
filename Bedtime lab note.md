@@ -114,13 +114,13 @@ A few more suggestions:
 
 Must change
 1. Stop using causal language. T
-2. Stop saying “full mediation.” T
+2. Stop saying “full mediation.” => T
 3. Fix/clarify chronotype coding. T
 4. Add simple-slopes interaction plot. ? => T
 5. Report CFA and measurement invariance (different waves) results fully. !! really important to develop => T
 [I write the analysis process in the method section, but i didn't explain it in the result section]
 7. Clarify why covariates were selected. => Physical activity T
-8. Treat age correctly. ? re-run the models
+8. Treat age correctly. ? re-run the models => age (num) - age_group (factor or categorical data) => regression, SEM, =>
 9. Add at least one plausible alternative model/sensitivity analysis. => T
 10. Remove the claim that preliminary regression “established” the mediation. T
 11. Acknowledge the single-item academic stress measure. T
