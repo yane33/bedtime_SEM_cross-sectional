@@ -19,7 +19,7 @@
 ####### 1.1 数据前置处理以确保能顺利进行分析 clean data #######
 # import the data
 getwd()
-setwd("/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data")
+setwd("/Users/heyanyan/Desktop/Research/Master'/✅Online Yu - Research/2.0_Bedtime/Data")
 install.packages("readxl")
 library(readxl)
 raw <- read_excel("1.0_raw.xlsx")
@@ -229,8 +229,6 @@ summary(fit_factor, fit.measures = TRUE, standardized = TRUE)
 # CFI = 0.93, RMSEA = 0.103, SRMR = 0.056 => RMSEA (reverse-coded items' method effect)
 modindices(fit_factor, sort = TRUE) %>% head(10) #high mi
 
-
-
 BP_model_revised <- 'bedtime_procrastination =~ BP_1 + BP_2_r + BP_3_r + BP_4 + BP_5 + BP_6 + BP_7_r + BP_8 + BP_9_r
   BP_2_r ~~ BP_3_r # (Add a residual covariance term)
   BP_2_r ~~ BP_7_r
@@ -249,12 +247,14 @@ BP_model_method <- '  #method factor 方法因子（把其中四道反向共同�
 '
 fit_method <- cfa(BP_model_method, data = BP_clean)
 summary(fit_method, fit.measures = TRUE, standardized = TRUE)
-# CFI = 0.985, RMSEA = 0.052, SRMR = 0.023
+# CFI = 0.984, RMSEA = 0.052, SRMR = 0.023
+
 
 ME_model <- 'Morningness_Eveningness =~ ME_1 + ME_2_r + ME_3 + ME_4 + ME_5'
 fit_factor <- cfa(ME_model, data = ME_clean)
 summary(fit_factor, fit.measures = TRUE, standardized = TRUE)
 # CFI = 0.991, RMSEA = 0.038, SRMR = 0.020
+
 
 PA_model <- 'Physical_Activity =~ PA_1 + PA_2 + PA_3 + PA_4 + PA_5 + PA_6 + PA_7'
 fit_factor <- cfa(PA_model, data = PA_clean)
@@ -267,6 +267,7 @@ PA_model_revised <- 'Physical_Activity =~ PA_1 + PA_2 + PA_3 + PA_4 + PA_5 + PA_
 fit_PA_revised <- cfa(PA_model_revised, data = PA_clean)
 summary(fit_PA_revised, fit.measures = TRUE, standardized = TRUE)
 # CFI = 0.982, RMSEA = 0.064, SRMR = 0.027
+
 
 SM_model <- 'social_media_use =~ SM_1 + SM_2 + SM_3 + SM_4 + SM_5 + SM_6'
 fit_factor <- cfa(SM_model, data = SM_clean)
@@ -281,6 +282,7 @@ fit_SM_revised <- cfa(SM_model_revised, data = SM_clean)
 summary(fit_SM_revised, fit.measures = TRUE, standardized = TRUE)
 # CFI = 0.992, RMSEA = 0.060, SRMR = 0.021
 modindices(fit_SM_revised, sort = TRUE) %>% head(10) # good!
+
 
 DP_model <- 'depression =~ DP_1 + DP_2 + DP_3 + DP_4 + DP_5 + DP_6 + DP_7 + DP_8 + DP_9'
 fit_factor <- cfa(DP_model, data = DP_clean)
@@ -378,8 +380,6 @@ df_final_w <- df_final_w %>%
   )
 str(df_final_w)
 
-table(PA_total)
-
 pp_code <- df_final_w$pp_code
 age <- df_final_w$age
 gender <- df_final_w$gender
@@ -440,6 +440,7 @@ fitMeasures(fit_configural, "cfi") # 0.976
 fitMeasures(fit_metric, "cfi") # 0.979
 fitMeasures(fit_scalar, "cfi") # 0.969
 
+
 DP_model_revised <- '
    depression =~ DP_1 + DP_2 + DP_3 + DP_4 + DP_5 + DP_6 + DP_7 + DP_8 + DP_9
    DP_3 ~~ DP_4
@@ -466,8 +467,8 @@ fit_configural <- cfa(SM_model_revised, data = df_final_w, group = "wave")
 fit_metric <- cfa(SM_model_revised, data = df_final_w, group = "wave", group.equal = "loadings")
 fit_scalar <- cfa(SM_model_revised, data = df_final_w, group = "wave", group.equal = c("loadings", "intercepts"))
 # 逐层比较，看每加一层限制，模型拟合是否显著变差
-anova(fit_configural, fit_metric) # p = 0.07 > 0.05
-anova(fit_metric, fit_scalar) # P = 0.15 > 0.05
+anova(fit_configural, fit_metric) # p = 0.0976 > 0.05
+anova(fit_metric, fit_scalar) # P = 0.1369 > 0.05
 # 直接看CFI下降幅度
 fitMeasures(fit_configural, "cfi") # 0.977
 fitMeasures(fit_metric, "cfi") # 0.975
@@ -484,6 +485,18 @@ prop.table(table(df_final_w$gender)) *100 # 46.0% 53.6% 0.4%
 
 table(df_final_w$age) # 205 304 20 7 7
 prop.table(table(df_final_w$age)) *100 # 37.8% 55.9% 3.7% 1.3% 1.3%
+str(df_final_w$age) # num
+
+# re-deal with the structure of the age => it is not the real age, so we can't regard it as the continuous variable
+names(df_final_w) # age
+df_final_w <- df_final_w %>%
+  mutate(age_group = case_when(
+    age == 1 ~ "18-20",
+    age == 2 ~ "21-23",
+    age %in% c(3,4,5) ~ "24+"
+  ))
+df_final_w$age_group <- as.factor(df_final_w$age_group)
+table(df_final_w$age_group, useNA = "always") # check 18-20 205; 21-23 302; 24+ 34; NA 0
 
 table(df_final_w$student_id) # 502 30 6 5
 prop.table(table(df_final_w$student_id)) *100 # 92.5% 5.5% 1.1% 0.9%
@@ -517,8 +530,8 @@ install.packages("apaTables")
 library(apaTables)
 apa.cor.table(df_cor, filename = "Table_Correlations.doc", show.conf.interval = FALSE)
 
-####### 2.1.7 multiple linear regression analysis (N = 541) #######
-# age: continuous = numeric, gender: categorical = factor(delete two pp), student_id: cate = factor, wave: two levels = numeric
+####### 2.1.7 Model 1: multiple linear regression analysis (N = 541) #######
+# age: categorical = factor, gender: categorical = factor(delete two pp), student_id: cate = factor, wave: two levels = numeric
 
 df_final_w$gender <- factor(
   df_final_w$gender,
@@ -545,13 +558,12 @@ levels(df_final_w$student_id)
 str(df_final_w)
 table(df_final_w$student_id)
 
-age <- df_final_w$age
-gender <- df_final_w$gender
-student <- df_final_w$student_id
-wave <- df_final_w$wave
-str(df_final_w)
+# new: change the age variable from numeric to factor
+df_final_w$age_group # factor
+str(df_final_w) #from numeric to factor (produce dummy variable = categorical data): it is not real continuous variable
 
-model_lm <- lm(BP_total ~ S_1 + SM_total + DP_total + PA_total + ME_total + age + gender + student + wave, data = df_final_w)
+# run the model
+model_lm <- lm(BP_total ~ S_1 + SM_total + DP_total + PA_total + ME_total + age_group + gender + student + wave, data = df_final_w)
 summary(model_lm)
 # contrasts can be applied only to factors with 2 or more levels => fixed through changing into the factors with multiple levels' variables
 
@@ -581,13 +593,23 @@ plot(model_lm, which = 4) # Cook's distance = 找出对模型影响过大的个�
 library(apaTables)
 apa.reg.table(model_lm, filename = "Table_3") # 直接输出表格避免数值错误
 
-####### 2.1.8 mediation analysis using lavaan() (N = 541) 需要掌握重要知识 #######
+####### 2.1.8 Model 2: mediation analysis using lavaan() (N = 541) 需要掌握重要知识 #######
 # step 1: main model without moderator: chronotype (measure model, chain mediation and covariate variables)
 str(df_final_w)
 install.packages("lavaan")
 install.packages("dplyr")
 library(lavaan)
 library(dplyr)
+
+#create two dummy variables, the 18-20 as the reference group
+df_final_w <- df_final_w %>%
+  mutate(
+    age_21_23 = ifelse(age_group == "21-23", 1, 0),
+    age_24plus = ifelse(age_group == "24+", 1, 0)
+  )
+
+table(df_final_w$age_group, df_final_w$age_21_23)
+table(df_final_w$age_group, df_final_w$age_24plus)
 
 chain_model <-'
  # ---------- 测量模型 ---------- latent variable 潜变量 3 （Academic stress 单条目无法估计因子载荷，直接作为观察变量放进结构路径）
@@ -609,21 +631,35 @@ chain_model <-'
  BP_2_r ~~ BP_7_r
  
  # ---------- 结构模型（链式中介 + 协变量）----------
- SM ~ a1*S_1 + age + gender + wave_num
- DP ~ a2*S_1 + d21*SM + age + gender + wave_num
- BP ~ cprime*S_1 + c_SM*SM + b1*DP + PA_total + age + gender + wave_num
+ SM ~ a1*S_1 + age_21_23 + age_24plus + gender + wave_num
+ DP ~ a2*S_1 + d21*SM + age_21_23 + age_24plus + gender + wave_num
+ BP ~ cprime*S_1 + c_SM*SM + b1*DP + PA_total + age_21_23 + age_24plus + gender + wave_num
  
  # ---------- 间接效应 ----------
- indirect_via_SM_only := a1*c_SM
- indirect_via_DP_only := a2*b1
- indirect_via_chain := a1*d21*b1
- total_indirect := indirect_via_DP_only + indirect_via_chain
- total_effect := cprime + indirect_via_DP_only + indirect_via_chain
+ indirect_via_SM_only := a1*c_SM # stress -> SM -> BP
+ indirect_via_DP_only := a2*b1 # stress -> DP -> BP
+ indirect_via_chain := a1*d21*b1 # stress -> SM -> DP -> BP
+ 
+  # ---------- 直接效应 ----------
+ total_indirect := indirect_via_SM_only + indirect_via_DP_only + indirect_via_chain
+ total_effect := cprime + total_indirect
 '
 fit_chain <- sem(chain_model, data = df_final_w, se = "bootstrap", bootstrap = 5000)
 summary(fit_chain, standardized = TRUE, fit.measures = TRUE)
 #CFI = 0.939, TLI = 0.93, RMSEA = 0.049, SRMR = 0.049 == indicating that the fitted model is overall good
-parameterEstimates(fit_chain, boot.ci.type = "bca.simple") %>% filter(op == ":=") # p = .003 < .05
+confint(fit_chain, level = 0.95, type = "bca.simple") # direct structural paths' 95% CI
+
+parameterEstimates(fit_chain, boot.ci.type = "bca.simple") %>% filter(op == ":=") # 没有direct effect
+# post-hoc check to distinguish total effect, total indirect effect, direct effect
+parameterEstimates(fit_chain) %>% filter(op == ":=" | (op == "~" & label == "cprime")) # all effects included
+
+# 提取所有内生变量的 R²
+lavInspect(fit_chain, "r2")
+
+
+## sensitivity analysis: from ML to MLR
+fit_chain_mlr <- sem(chain_model, data = df_final_w, estimator = "MLR")
+summary(fit_chain_mlr, fit.measures = TRUE, standardized = TRUE)
 
 # output the SEM chain mediation result
 # figure 1 regression paths 结构路径
@@ -681,10 +717,11 @@ ft2 <- flextable(indirect_table)
 save_as_docx(ft2, path = "Table_Indirect_Effects.docx")
 
 
-####### 2.1.9 moderated mediation: professional package to run the latent variables' interaction #######
+####### 2.1.9 Model 3: moderated mediation: professional package to run the latent variables' interaction #######
 install.packages("modsem")
 library(modsem)
 
+str(age)
 model_syntax <- '
   SM =~ SM_1 + SM_2 + SM_3 + SM_4 + SM_5 + SM_6
   SM_1 ~~ SM_2
@@ -713,11 +750,52 @@ model_syntax <- '
   indirect_via_SM_only := a1*c_SM
   indirect_via_chain := a1*d21*b1
   
+  # moderated mediation effect
   index_mod_med_chain := a1*d21*b3
   index_mod_med_simple := a2*b3 # new line
 '
 fit_modsem <- modsem(model_syntax, data = df_final_w, method = "lms") # or other method = "qml
 summary(fit_modsem)
+
+confint(fit_modsem, level = 0.95, type = "bca.simple") # direct structural paths' 95% CI
+
+
+# sensitivi#ty analysis: from ML to boot
+fit_moderated_boot <- modsem(model_syntax, data = df_final_w, method = "lms", bootstrap = 1000)
+summary(fit_moderated_boot) # 没有成功计算出标准误和置信区间
+
+str(df_final_w) # gender, student_id => modsem needs all variables are numeric
+df_final_w$gender <- as.numeric(df_final_w$gender)
+df_final_w$student_id <- as.numeric(df_final_w$student_id)
+
+# 计算标准误和置信区间
+# 终极备用方案：观测变量交互项 + OLS Bootstrap
+# 该方法用因子得分（均值）代替潜变量，进行稳健性检验
+# 1. 计算因子得分（均值）
+df_final_w$DP_mean <- rowMeans(df_final_w[, c("DP_1","DP_2","DP_3","DP_4","DP_5",
+                                              "DP_6","DP_7","DP_8","DP_9")], na.rm = TRUE)
+df_final_w$ME_mean <- rowMeans(df_final_w[, c("ME_1","ME_2_r","ME_3","ME_4","ME_5")], na.rm = TRUE)
+df_final_w$SM_mean <- rowMeans(df_final_w[, c("SM_1","SM_2","SM_3","SM_4","SM_5","SM_6")], na.rm = TRUE)
+
+# 2. 中心化（避免多重共线性）
+df_final_w$DP_c <- scale(df_final_w$DP_mean, scale = FALSE)
+df_final_w$ME_c <- scale(df_final_w$ME_mean, scale = FALSE)
+df_final_w$DP_ME_int <- df_final_w$DP_c * df_final_w$ME_c
+
+# 3. 加载 boot 包
+library(boot)
+# 4. 定义 Bootstrap 函数（专门提取交互项系数）
+boot_interact <- function(data, indices) {
+  d <- data[indices, ]
+  coef(lm(BP_total ~ S_1 + SM_mean + DP_c + ME_c + DP_ME_int + 
+            PA_total + age + gender + wave_num, data = d))["DP_ME_int"]
+}
+# 5. 运行 Bootstrap（5000次）
+set.seed(123)
+boot_out <- boot(data = df_final_w, statistic = boot_interact, R = 5000)
+
+# 6. 查看交互项的 BCa 置信区间（核心结果）
+boot.ci(boot_out, type = "bca") # （-3.218, -0.901)
 
 
 # draw the plot
@@ -891,8 +969,55 @@ ft_indirect <- flextable(indirect_final) %>%
 
 save_as_docx(ft_indirect, path = "/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data/Table_LMS_IndirectEffects.docx")
 
-?lavaan()
-?modsem()
-citation()
-citation("modsem")
+####### 2.3 Alternative model and sensitivity analysis #######
+# 2.3.1 Competitive chain mediation order from original to: academic stress -> depression -> social media addiction -> bedtime procrastination
+model_alt_mediation <- '
+# measurement model like the model 2
+ #academic stress
+ Stress =~ 1 * S_1
+ 
+ #SMA
+ SM =~ SM_1 + SM_2 + SM_3 + SM_4 + SM_5 + SM_6
+ SM_1 ~~ SM_2
+ 
+ #DP
+ DP =~ DP_1 + DP_2 + DP_3 + DP_4 + DP_5 + DP_6 + DP_7 + DP_8 + DP_9
+ DP_3 ~~ DP_4
+ DP_4 ~~ DP_9
+ DP_8 ~~ DP_9
+ DP_6 ~~ DP_8
+ 
+ #BP
+ BP =~ BP_1 + BP_2_r + BP_3_r + BP_4 + BP_5 + BP_6 + BP_7_r + BP_8 + BP_9_r
+ BP_3_r ~~ BP_7_r
+ BP_3_r ~~ BP_9_r
+ BP_7_r ~~ BP_9_r
+ BP_2_r ~~ BP_9_r
+ BP_2_r ~~ BP_3_r
+ BP_2_r ~~ BP_7_r
+ 
+# structural path: academic stress -> depression -> social media addiction -> bedtime procrastination
+ #Path 1 a1: stress -> depression
+ DP ~ a1_alt * Stress + age + gender + wave_num + PA_total
+ 
+ #Path 2 a2 + d21: stress + depression -> social media addiction
+ SM ~ a2_alt * Stress + d21_alt * DP + age + gender + wave_num
+ 
+ #Path 3 c, + b1 + b2: stress + depression + addiction -> bedtime procrastination
+ BP ~ c_prime_alt * Stress + b1_alt * DP + b2_alt * SM + age + gender + wave_num + PA_total
+'
+fit_alt <- sem(model_alt_mediation, data = df_final_w, estimator = "MLR")
 
+# compare with model 2 and alternative model
+anova(fit_chain, fit_alt)
+
+# important comparative indicators
+AIC(fit_chain) # 29932.82
+AIC(fit_alt) # 31539.11 => original path model is smaller than the alternative model, further supporting our hypothesis
+
+BIC(fit_chain) # 30254.82
+BIC(fit_alt) # 31869.7
+
+# 2.3.2 sensitivity analysis for changing the estimator from ML to MLR
+fit_main_mlr <- sem(model_main, data = df, estimator = "MLR")
+summary(fit_main_mlr, fit.measures = TRUE)
