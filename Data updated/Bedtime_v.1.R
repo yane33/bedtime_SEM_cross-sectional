@@ -563,7 +563,7 @@ df_final_w$age_group # factor
 str(df_final_w) #from numeric to factor (produce dummy variable = categorical data): it is not real continuous variable
 
 # run the model
-model_lm <- lm(BP_total ~ S_1 + SM_total + DP_total + PA_total + ME_total + age_group + gender + student + wave, data = df_final_w)
+model_lm <- lm(BP_total ~ S_1 + SM_total + DP_total + PA_total + ME_total + age_group + gender + student_id + wave, data = df_final_w)
 summary(model_lm)
 # contrasts can be applied only to factors with 2 or more levels => fixed through changing into the factors with multiple levels' variables
 
@@ -721,7 +721,9 @@ save_as_docx(ft2, path = "Table_Indirect_Effects.docx")
 install.packages("modsem")
 library(modsem)
 
-str(age)
+str(df_final_w$age_group)
+table(df_final_w$age_group)
+
 model_syntax <- '
   SM =~ SM_1 + SM_2 + SM_3 + SM_4 + SM_5 + SM_6
   SM_1 ~~ SM_2
@@ -742,9 +744,9 @@ model_syntax <- '
 
   ME =~ ME_1 + ME_2_r + ME_3 + ME_4 + ME_5
 
-  SM ~ a1*S_1 + age + gender + wave_num
-  DP ~ a2*S_1 + d21*SM + age + gender + wave_num
-  BP ~ cprime*S_1 + c_SM*SM + b1*DP + b2*ME + b3*DP:ME + PA_total + age + gender + wave_num
+  SM ~ a1*S_1 + age_21_23 + age_24plus + gender + wave_num
+  DP ~ a2*S_1 + d21*SM + age_21_23 + age_24plus + gender + wave_num
+  BP ~ cprime*S_1 + c_SM*SM + b1*DP + b2*ME + b3*DP:ME + PA_total + age_21_23 + age_24plus + gender + wave_num
 
   indirect_via_DP_only := a2*b1
   indirect_via_SM_only := a1*c_SM
@@ -967,7 +969,7 @@ ft_indirect <- flextable(indirect_final) %>%
   set_caption("Indirect Effects and Index of Moderated Mediation") %>%
   autofit()
 
-save_as_docx(ft_indirect, path = "/Users/heyanyan/Desktop/Research/✅Online Yu - Research/2.0_Bedtime/Data/Table_LMS_IndirectEffects.docx")
+save_as_docx(ft_indirect, path = "/Users/heyanyan/Desktop/Research/Master'/✅Online Yu - Research/2.0_Bedtime/Data/Table_LMS_IndirectEffects.docx")
 
 ####### 2.3 Alternative model and sensitivity analysis #######
 # 2.3.1 Competitive chain mediation order from original to: academic stress -> depression -> social media addiction -> bedtime procrastination
@@ -998,13 +1000,13 @@ model_alt_mediation <- '
  
 # structural path: academic stress -> depression -> social media addiction -> bedtime procrastination
  #Path 1 a1: stress -> depression
- DP ~ a1_alt * Stress + age + gender + wave_num + PA_total
+ DP ~ a1_alt * Stress + age_21_23 + age_24plus + gender + wave_num + PA_total
  
  #Path 2 a2 + d21: stress + depression -> social media addiction
- SM ~ a2_alt * Stress + d21_alt * DP + age + gender + wave_num
+ SM ~ a2_alt * Stress + d21_alt * DP + age_21_23 + age_24plus + gender + wave_num
  
  #Path 3 c, + b1 + b2: stress + depression + addiction -> bedtime procrastination
- BP ~ c_prime_alt * Stress + b1_alt * DP + b2_alt * SM + age + gender + wave_num + PA_total
+ BP ~ c_prime_alt * Stress + b1_alt * DP + b2_alt * SM + age_21_23 + age_24plus + gender + wave_num + PA_total
 '
 fit_alt <- sem(model_alt_mediation, data = df_final_w, estimator = "MLR")
 
@@ -1012,11 +1014,11 @@ fit_alt <- sem(model_alt_mediation, data = df_final_w, estimator = "MLR")
 anova(fit_chain, fit_alt)
 
 # important comparative indicators
-AIC(fit_chain) # 29932.82
-AIC(fit_alt) # 31539.11 => original path model is smaller than the alternative model, further supporting our hypothesis
+AIC(fit_chain) # 29932.45
+AIC(fit_alt) # 31538.70 => original path model is smaller than the alternative model, further supporting our hypothesis
 
-BIC(fit_chain) # 30254.82
-BIC(fit_alt) # 31869.7
+BIC(fit_chain) # 30267.33
+BIC(fit_alt) # 31882.17
 
 # 2.3.2 sensitivity analysis for changing the estimator from ML to MLR
 fit_main_mlr <- sem(model_main, data = df, estimator = "MLR")
