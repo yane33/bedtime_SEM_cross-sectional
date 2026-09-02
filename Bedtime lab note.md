@@ -16,6 +16,7 @@ submit to the journal 08/13
 revise process with Dr. Yu 08/13 - 
 collect the key concepts from the data analysis process and understand those concepts (相关、回归到底是什么概念)
 
+
 # 07.29 Latest progress regarding the article publication
 1. data analysis
 1) clean data: 
@@ -120,7 +121,7 @@ Must change
 5. Report CFA and measurement invariance (different waves) results fully. !! really important to develop => T
 [I write the analysis process in the method section, but i didn't explain it in the result section]
 7. Clarify why covariates were selected. => Physical activity T
-8. Treat age correctly. ? re-run the models => age (num) - age_group (factor or categorical data) => regression, SEM, =>
+8. Treat age correctly. ? re-run the models => age (num) - age_group (factor or categorical data) => regression, SEM, => Re-create the models T
 9. Add at least one plausible alternative model/sensitivity analysis. => T
 10. Remove the claim that preliminary regression “established” the mediation. T
 11. Acknowledge the single-item academic stress measure. T
@@ -143,6 +144,8 @@ From another perspective, I seem to lose everything I have in China. This will l
 
 08.31 research note
 During the data analysis process, I really saw my weakness, or the things that I can improve in the next step. While analyzing, I realized that I can deal with those scales better, which will help me analyze those data better. Firstly, I should collect the real age number rather than the range, so I can regard these numbers as the continuous variable rather than the factor. Secondly, for the core variables, I need to select the professional scales rather than the one-item scale. Anyway, I really learn a lot during this process and I am excited to do the subsequent research, such as longitudinal or daily diary research to further explore the relationship between these variables :) Crazy!
+
+This article is apporoaching the end, I truly experience the beauty of analyzing data and summarizing a article. Oh, this is research! I can't believe if I find other fields that I interest or I learn other fantastic techniques to boost the research, how enjoyable I am! Although, I hope to learn other advanced research techniques, but I hope to continue doing this area via longitudinal measures or other interesting methods. I believe I will feel the mystery and beauty of the research!
 
 
 
