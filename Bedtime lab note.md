@@ -147,6 +147,13 @@ During the data analysis process, I really saw my weakness, or the things that I
 
 This article is apporoaching the end, I truly experience the beauty of analyzing data and summarizing a article. Oh, this is research! I can't believe if I find other fields that I interest or I learn other fantastic techniques to boost the research, how enjoyable I am! Although, I hope to learn other advanced research techniques, but I hope to continue doing this area via longitudinal measures or other interesting methods. I believe I will feel the mystery and beauty of the research!
 
+# 09.04 Self revision before the end of Sept.
+1. Check the guideline of the target journal T
+
+2. Revise according to the AI T
+
+
+
 
 
 
