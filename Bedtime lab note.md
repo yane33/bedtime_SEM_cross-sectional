@@ -153,6 +153,10 @@ This article is apporoaching the end, I truly experience the beauty of analyzing
 2. Revise according to the AI T
 
 
+# 09.05 research note
+It's approaching the end of the article writing period, I just need to revise the last version of the article and send it to my supervisor. The work what I can do is over. When I saw the email that supervisor suggested me to revise by myself since she was too busy. I felt very sad, but I turned my thoughts to positive. I need to be patient, and I just do what I need to do and everything will be fine.
+
+
 
 
 
