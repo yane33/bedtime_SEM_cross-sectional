@@ -157,6 +157,15 @@ This article is apporoaching the end, I truly experience the beauty of analyzing
 It's approaching the end of the article writing period, I just need to revise the last version of the article and send it to my supervisor. The work what I can do is over. When I saw the email that supervisor suggested me to revise by myself since she was too busy. I felt very sad, but I turned my thoughts to positive. I need to be patient, and I just do what I need to do and everything will be fine.
 
 
+# 09.07
+Thanks for sending it! I don't think it fits JAD due to the topic. Please review the guideline and revise it carefully. Also, a quick look it seems you are not using any citation tool like endnote. There are some errors/missing paper in your citation and ref list. Please use endnote if you haven't. It'll organize your ref list automatically.
+
+=> 
+1. Check the guideline of current psychology
+2. Use the citation tool to arrange the reference list
+
+
+
 
 
 
