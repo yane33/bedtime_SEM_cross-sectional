@@ -161,8 +161,8 @@ It's approaching the end of the article writing period, I just need to revise th
 Thanks for sending it! I don't think it fits JAD due to the topic. Please review the guideline and revise it carefully. Also, a quick look it seems you are not using any citation tool like endnote. There are some errors/missing paper in your citation and ref list. Please use endnote if you haven't. It'll organize your ref list automatically.
 
 => 
-1. Check the guideline of current psychology
-2. Use the citation tool to arrange the reference list
+1. Check the guideline of current psychology T
+2. Use the citation tool to arrange the reference list T
 
 
 
