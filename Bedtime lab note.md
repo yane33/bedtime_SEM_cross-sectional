@@ -164,6 +164,8 @@ Thanks for sending it! I don't think it fits JAD due to the topic. Please review
 1. Check the guideline of current psychology T
 2. Use the citation tool to arrange the reference list T
 
+# 09.29 submit revision
+
 
 
 
