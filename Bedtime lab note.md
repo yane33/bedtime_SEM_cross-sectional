@@ -164,7 +164,17 @@ Thanks for sending it! I don't think it fits JAD due to the topic. Please review
 1. Check the guideline of current psychology T
 2. Use the citation tool to arrange the reference list T
 
-# 09.29 submit revision
+# 09.30 revision
+A very professional revision was provided: The problem is that the manuscript currently claims considerably more than the design can support (total 21 pages)
+1. Causal language
+- small mistake T 最后可能还得再仔细检查一下
+- alternative model T
+2. The two survey waves are a major issue that needs clarification
+At minimum, I would want:
+1. descriptive statistics by wave; T
+2. tests of mean differences; T
+3. preferably tests of whether the structural paths differ across waves; X => the structural paths differ across waves => rewrite the results and discussion
+4. A clear rationale for pooling the waves. T
 
 
 
