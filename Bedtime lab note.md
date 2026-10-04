@@ -176,9 +176,12 @@ At minimum, I would want:
 3. preferably tests of whether the structural paths differ across waves; X => the structural paths differ across waves => rewrite the results and discussion
 4. A clear rationale for pooling the waves. T
 
-=> Sleep and Biological Rhythms (2.0) https://link.springer.com/journal/41105 https://link.springer.com/article/10.1186/s12889-024-18019-6
+Journal selection:
+JAD and current psychology
+
 1. according to reviewer's comments, revise the original article, expecially the wave and gender issue
-2. strengthen the sleep elements
+2. top target is the JAD
+
 
 
 
