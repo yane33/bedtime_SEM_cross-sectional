@@ -182,6 +182,16 @@ JAD and current psychology
 1. according to reviewer's comments, revise the original article, expecially the wave and gender issue
 2. top target is the JAD
 
+1. 把 causal language 全面降下来
+2. 重新包装 “clinical significance”
+3. 加强为什么 chronotype × depression 是真正 novel 的理论贡献
+4. 把 single-item academic stress 的 limitation 写得更专业
+5. 把 invariance 的完整结果放到 Supplementary + Methods/Results 简洁报告
+6. 检查“eveningness is protective/buffering”这个措辞——你的数据只能支持“the association was weaker”，不能证明 eveningness 真的是 protective factor。
+7. “full mediation”也建议谨慎，因为横断面数据下最好说 indirect-only pattern，而不是 causal full mediation。
+8. 最重要的是：把 introduction 从“bedtime procrastination 很重要”进一步改造成“affective dysregulation 如何转化为 sleep-related maladaptive behavior”。
+9. reduce the words to the around 5000
+
 
 
 
