@@ -19,7 +19,7 @@
 ####### 1.1 数据前置处理以确保能顺利进行分析 clean data #######
 # import the data
 getwd()
-setwd("/Users/heyanyan/Desktop/Research/Master'/✅Online Yu - Research/2.0_Bedtime/Data")
+setwd("/Users/heyanyan/Desktop/Research/Master'/✅ Bedtime_Yu/2.0_Bedtime/Data")
 install.packages("readxl")
 library(readxl)
 raw <- read_excel("1.0_raw.xlsx")
@@ -473,6 +473,206 @@ anova(fit_metric, fit_scalar) # P = 0.1369 > 0.05
 fitMeasures(fit_configural, "cfi") # 0.977
 fitMeasures(fit_metric, "cfi") # 0.975
 fitMeasures(fit_scalar, "cfi") # 0.973
+
+# 2.1.4 extra - revision: extra-analysis structural invariance between two waves
+# 1 descriptive statistics by wave
+library(dplyr)
+
+# 描述统计：按wave分组
+describeBy(df_final_w %>% select(S_1, SM_total, DP_total, BP_total, ME_total, PA_total), 
+           group = df_final_w$wave)
+
+# 2 tests of mean differences
+# 均值差异检验 + 效应量
+install.packages("effectsize")
+library(effectsize)
+
+t.test(S_1 ~ wave, data = df_final_w)
+cohens_d(S_1 ~ wave, data = df_final_w)
+
+t.test(SM_total ~ wave, data = df_final_w)
+cohens_d(SM_total ~ wave, data = df_final_w)
+
+t.test(DP_total ~ wave, data = df_final_w)
+cohens_d(DP_total ~ wave, data = df_final_w)
+
+t.test(BP_total ~ wave, data = df_final_w)
+cohens_d(BP_total ~ wave, data = df_final_w)
+
+t.test(ME_total ~ wave, data = df_final_w)
+cohens_d(ME_total ~ wave, data = df_final_w)
+
+t.test(PA_total ~ wave, data = df_final_w)
+cohens_d(PA_total ~ wave, data = df_final_w)
+
+# 3 multi-level invariance check: 1) CFA 2) configural 3) metric 4) scalar 5) structural paths differences across waves
+table(df_final_w$wave, df_final_w$gender) # gender 1: male gender 2: female
+
+## Configural invariance: whether two waves' factor structures are the same or not
+library(lavaan)
+chain_model <-'
+ # ---------- 测量模型 ---------- latent variable 潜变量 3 （Academic stress 单条目无法估计因子载荷，直接作为观察变量放进结构路径）
+ SM =~ SM_1 + SM_2 + SM_3 + SM_4 + SM_5 + SM_6
+ SM_1 ~~ SM_2
+ 
+ DP =~ DP_1 + DP_2 + DP_3 + DP_4 + DP_5 + DP_6 + DP_7 + DP_8 + DP_9
+ DP_3 ~~ DP_4
+ DP_4 ~~ DP_9
+ DP_8 ~~ DP_9
+ DP_6 ~~ DP_8
+ 
+ BP =~ BP_1 + BP_2_r + BP_3_r + BP_4 + BP_5 + BP_6 + BP_7_r + BP_8 + BP_9_r
+ BP_3_r ~~ BP_7_r
+ BP_3_r ~~ BP_9_r
+ BP_7_r ~~ BP_9_r
+ BP_2_r ~~ BP_9_r
+ BP_2_r ~~ BP_3_r
+ BP_2_r ~~ BP_7_r
+ 
+ # ---------- 结构模型（链式中介 + 协变量）----------
+ SM ~ a1*S_1 + age_21_23 + age_24plus + gender
+ DP ~ a2*S_1 + d21*SM + age_21_23 + age_24plus + gender
+ BP ~ cprime*S_1 + c_SM*SM + b1*DP + PA_total + age_21_23 + age_24plus + gender
+ 
+ # ---------- 间接效应 ----------
+ indirect_via_SM_only := a1*c_SM # stress -> SM -> BP
+ indirect_via_DP_only := a2*b1 # stress -> DP -> BP
+ indirect_via_chain := a1*d21*b1 # stress -> SM -> DP -> BP
+ 
+  # ---------- 直接效应 ----------
+ total_indirect := indirect_via_SM_only + indirect_via_DP_only + indirect_via_chain
+ total_effect := cprime + total_indirect
+'
+fit_configural <- cfa(
+  chain_model,
+  data = df_final_w,
+  group = "wave"
+)
+summary(
+  fit_configural,
+  fit.measures = TRUE,
+  standardized = TRUE
+)
+fitMeasures(
+  fit_configural,
+  c("chisq", "df", "cfi", "tli", "rmsea", "srmr")
+)
+
+## Metric invariance: whether factor loadings could be setted equally between two waves
+fit_metric <- cfa(
+  chain_model,
+  data = df_final_w,
+  group = "wave",
+  group.equal = "loadings"
+)
+summary(
+  fit_metric,
+  fit.measures = TRUE,
+  standardized = TRUE
+)
+fitMeasures(
+  fit_metric,
+  c("chisq", "df", "cfi", "tli", "rmsea", "srmr")
+)
+
+## Scalar invariance: whether factor loadings and intercepts could be equal
+fit_scalar <- cfa(
+  chain_model,
+  data = df_final_w,
+  group = "wave",
+  group.equal = c("loadings", "intercepts")
+)
+summary(
+  fit_scalar,
+  fit.measures = TRUE,
+  standardized = TRUE
+)
+fitMeasures(
+  fit_scalar,
+  c("chisq", "df", "cfi", "tli", "rmsea", "srmr")
+)
+
+## Structural invariance
+fit_structural <- sem(chain_model, data = df_final_w, group = "wave",
+                           group.equal = c("loadings", "intercepts", "regressions"))
+fit_structural_constrained <- sem(chain_model, data = df_final_w, group = "wave", # constrain latent variances and covariances
+                                  group.equal = c("loadings", "intercepts", "regressions", "lv.variances", "lv.covariances"))
+anova(fit_structural, fit_structural_constrained)
+fitMeasures(fit_structural, "cfi")
+fitMeasures(fit_structural_constrained, "cfi")
+
+## comparison
+fits <- rbind(
+  Configural = fitMeasures(
+    fit_configural,
+    c("cfi", "rmsea", "srmr")
+  ),
+  
+  Metric = fitMeasures(
+    fit_metric,
+    c("cfi", "rmsea", "srmr")
+  ),
+  
+  Scalar = fitMeasures(
+    fit_scalar,
+    c("cfi", "rmsea", "srmr")
+  ),
+  
+  Structural = fitMeasures(
+    fit_structural,
+    c("cfi", "rmsea", "srmr")
+  )
+)
+round(fits, 3)
+
+## CFI/RMSEA/SRMR
+delta <- data.frame(
+  Comparison = c(
+    "Metric - Configural",
+    "Scalar - Metric",
+    "Structural - Scalar"
+  ),
+  
+  Delta_CFI = c(
+    fits["Metric", "cfi"] -
+      fits["Configural", "cfi"],
+    
+    fits["Scalar", "cfi"] -
+      fits["Metric", "cfi"],
+    
+    fits["Structural", "cfi"] -
+      fits["Scalar", "cfi"]
+  ),
+  
+  Delta_RMSEA = c(
+    fits["Metric", "rmsea"] -
+      fits["Configural", "rmsea"],
+    
+    fits["Scalar", "rmsea"] -
+      fits["Metric", "rmsea"],
+    
+    fits["Structural", "rmsea"] -
+      fits["Scalar", "rmsea"]
+  ),
+  
+  Delta_SRMR = c(
+    fits["Metric", "srmr"] -
+      fits["Configural", "srmr"],
+    
+    fits["Scalar", "srmr"] -
+      fits["Metric", "srmr"],
+    
+    fits["Structural", "srmr"] -
+      fits["Scalar", "srmr"]
+  )
+)
+round(delta[, -1], 3)
+
+# sex difference
+table(df_final_w$wave, df_final_w$gender)
+prop.table(table(df_final_w$wave, df_final_w$gender), margin = 1)
+
+chisq.test(table(df_final_w$wave, df_final_w$gender))
 
 # 2.1.5 descriptive analysis 不同量表的数据特征 n(%) (N = 541)
 nrow(des_clean)# 541
